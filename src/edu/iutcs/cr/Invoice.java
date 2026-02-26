@@ -12,7 +12,7 @@ import java.util.Scanner;
  * @author Raian Rahman
  * @since 4/19/2024
  */
-public class Invoice implements Serializable {
+public class Invoice {
 
     private final Buyer buyer;
     private final Seller seller;
@@ -24,10 +24,24 @@ public class Invoice implements Serializable {
         this.buyer = buyer;
         this.seller = seller;
         this.shoppingCart = shoppingCart;
-        takePayment();
-        markCarAsUnavailable();
         dateTime = LocalDateTime.now();
     }
+
+    public Buyer getBuyer() {
+        return buyer;
+    }
+
+    public Seller getSeller() {
+        return seller;
+    }
+
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
+    }
+
+    public boolean isPaid() {
+        return isPaid;
+    }   
 
     public void printInvoice() {
         System.out.println("Buyer: " + this.buyer.toString());
@@ -38,16 +52,16 @@ public class Invoice implements Serializable {
         this.shoppingCart.viewCart();
     }
 
-    public void takePayment() {
-        Scanner scanner = new Scanner(System.in);
+    // public void takePayment() {
+    //     Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Is payment done (true/false): ");
-        this.isPaid = scanner.nextBoolean();
-    }
+    //     System.out.print("Is payment done (true/false): ");
+    //     this.isPaid = scanner.nextBoolean();
+    // }
 
-    private void markCarAsUnavailable() {
-        for(Vehicle vehicle: shoppingCart.getVehicles()) {
-            vehicle.setUnavailable();
-        }
-    }
+    // private void markCarAsUnavailable() {
+    //     for(Vehicle vehicle: shoppingCart.getVehicles()) {
+    //         vehicle.setUnavailable();
+    //     }
+    // }
 }
