@@ -1,30 +1,29 @@
-package edu.iutcs.cr;
-
 import edu.iutcs.cr.persons.Buyer;
 import edu.iutcs.cr.persons.Seller;
-import edu.iutcs.cr.vehicles.Vehicle;
-
-import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Scanner;
 
-/**
- * @author Raian Rahman
- * @since 4/19/2024
- */
 public class Invoice {
 
-    private final Buyer buyer;
-    private final Seller seller;
-    private final ShoppingCart shoppingCart;
-    private boolean isPaid;
-    private final LocalDateTime dateTime;
+    private Buyer buyer;
+    private Seller seller;
+    private ShoppingCart cart;
+    private boolean paid;
+    private LocalDateTime createdAt;
 
-    public Invoice(Buyer buyer, Seller seller, ShoppingCart shoppingCart) {
+    public Invoice(Buyer buyer, Seller seller, ShoppingCart cart) {
         this.buyer = buyer;
         this.seller = seller;
-        this.shoppingCart = shoppingCart;
-        dateTime = LocalDateTime.now();
+        this.cart = cart;
+        this.createdAt = LocalDateTime.now();
+        this.paid = false;
+    }
+
+    public void markPaid() {
+        this.paid = true;
+    }
+
+    public boolean isPaid() {
+        return paid;
     }
 
     public Buyer getBuyer() {
@@ -35,21 +34,12 @@ public class Invoice {
         return seller;
     }
 
-    public ShoppingCart getShoppingCart() {
-        return shoppingCart;
+    public ShoppingCart getCart() {
+        return cart;
     }
 
-    public boolean isPaid() {
-        return isPaid;
-    }   
-
-    public void printInvoice() {
-        System.out.println("Buyer: " + this.buyer.toString());
-        System.out.println("Seller: " + this.seller.toString());
-        System.out.println("Payment Status: " + (isPaid ? "Paid" : "Due"));
-        System.out.println("Date: " + dateTime.toLocalDate() + " Time: " + dateTime.toLocalTime());
-
-        this.shoppingCart.viewCart();
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
     // public void takePayment() {
