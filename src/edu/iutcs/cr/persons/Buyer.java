@@ -10,24 +10,15 @@ public class Buyer extends Person{
 
     private String paymentMethod;
 
-    /**
-     * Full constructor
-     */
     public Buyer(String id, String name, String email, String paymentMethod) {
         super(id, name, email);
         this.paymentMethod = paymentMethod;
     }
     
-    /**
-     * Constructor for lookup
-     */
     public Buyer(String id) {
         super(id);
     }
     
-    /**
-     * Static factory method for interactive creation
-     */
     public static Buyer createFromUserInput(InputService inputService) {
         Person person = Person.createFromUserInput(inputService);
         String paymentMethod = inputService.readString("Enter payment method: ");

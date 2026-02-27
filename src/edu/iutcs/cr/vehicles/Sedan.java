@@ -10,18 +10,12 @@ public class Sedan extends Vehicle{
 
     private boolean hasSunroof;
 
-    /**
-     * Full constructor
-     */
     public Sedan(String registrationNumber, String make, String model, 
                  String year, double price, boolean hasSunroof) {
         super(registrationNumber, make, model, year, price);
         this.hasSunroof = hasSunroof;
     }
-    
-    /**
-     * Constructor for interactive creation
-     */
+
     public Sedan(InputService inputService) {
         super("");
         initializeFromUserInput(inputService);

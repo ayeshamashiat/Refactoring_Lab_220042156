@@ -9,18 +9,12 @@ public class Car extends Vehicle{
 
     private int seatingCapacity;
 
-    /**
-     * Full constructor
-     */
     public Car(String registrationNumber, String make, String model, 
                String year, double price, int seatingCapacity) {
         super(registrationNumber, make, model, year, price);
         this.seatingCapacity = seatingCapacity;
     }
-    
-    /**
-     * Constructor for interactive creation
-     */
+
     public Car(InputService inputService) {
         super("");
         initializeFromUserInput(inputService);

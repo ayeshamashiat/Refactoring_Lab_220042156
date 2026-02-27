@@ -9,18 +9,12 @@ public class SUV extends Vehicle{
 
     private boolean isOffRoad;
 
-    /**
-     * Full constructor
-     */
     public SUV(String registrationNumber, String make, String model, 
                String year, double price, boolean isOffRoad) {
         super(registrationNumber, make, model, year, price);
         this.isOffRoad = isOffRoad;
     }
-    
-    /**
-     * Constructor for interactive creation
-     */
+
     public SUV(InputService inputService) {
         super("");
         initializeFromUserInput(inputService);

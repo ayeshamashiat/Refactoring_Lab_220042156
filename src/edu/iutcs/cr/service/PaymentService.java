@@ -9,18 +9,11 @@ public class PaymentService {
         this.inputService = InputService.getInstance();
     }
     
-    /**
-     * Process payment for an invoice
-     * Returns true if payment is successful
-     */
     public boolean processPayment(double amount) {
         System.out.println("\nProcessing payment of $" + amount);
         return inputService.readBoolean("Is payment completed?");
     }
-    
-    /**
-     * Validate payment method
-     */
+
     public boolean isValidPaymentMethod(String paymentMethod) {
         if (paymentMethod == null || paymentMethod.isBlank()) {
             return false;

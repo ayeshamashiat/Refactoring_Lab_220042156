@@ -22,16 +22,10 @@ public class Person implements Serializable {
         this.email = email;
     }
     
-    /**
-     * Constructor with ID only - for lookup/search
-     */
     public Person(String id) {
         this.id = id;
     }
     
-    /**
-     * Static factory method for interactive creation
-     */
     public static Person createFromUserInput(InputService inputService) {
         String name = inputService.readMandatoryString("Enter name: ", "Name");
         String id = inputService.readMandatoryString("Enter ID: ", "ID");
@@ -39,7 +33,6 @@ public class Person implements Serializable {
         return new Person(id, name, email);
     }
 
-    // Getters
     public String getName() {
         return name;
     }

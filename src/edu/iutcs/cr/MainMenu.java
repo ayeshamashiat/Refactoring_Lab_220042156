@@ -14,10 +14,7 @@ public class MainMenu {
     public MainMenu() {
         this.inputService = InputService.getInstance();
     }
-    
-    /**
-     * Display menu and get user selection
-     */
+  
     public MenuOperation showAndSelectOperation() {
         MenuOperation.displayMenu();
         

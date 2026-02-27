@@ -1,5 +1,4 @@
 A. God Class:
-
 A1. Invoice.java:
 - Had too many responsibilities and violated SRP 
 (creating invoice, taking payment, marking cars as unavailable and printing invoice)
@@ -39,5 +38,3 @@ G1. Vehicle.java:
 In Vehicle class, there are a lot of conditionals which introduce conditional complexity. To remove the complexity,
 I moved the object creation logic to a vehicle factory class and dedicated switch conditions for object creation 
 
-H. Primitive Obsession:
-H1. 

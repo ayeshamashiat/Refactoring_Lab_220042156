@@ -9,18 +9,12 @@ public class Bus extends Vehicle{
 
     private int passengerCapacity;
 
-    /**
-     * Full constructor
-     */
     public Bus(String registrationNumber, String make, String model, 
                String year, double price, int passengerCapacity) {
         super(registrationNumber, make, model, year, price);
         this.passengerCapacity = passengerCapacity;
     }
-    
-    /**
-     * Constructor for interactive creation
-     */
+
     public Bus(InputService inputService) {
         super("");
         initializeFromUserInput(inputService);

@@ -16,9 +16,6 @@ public class Invoice implements Serializable {
     private final LocalDateTime dateTime;
     private final double totalAmount;
 
-    /**
-     * Constructor - creates invoice and processes payment
-     */
     public Invoice(Buyer buyer, Seller seller, ShoppingCart shoppingCart,
                    PaymentService paymentService, InventoryService inventoryService) {
         this.buyer = buyer;
@@ -26,19 +23,15 @@ public class Invoice implements Serializable {
         this.shoppingCart = shoppingCart;
         this.dateTime = LocalDateTime.now();
         
-        // Calculate total
         this.totalAmount = inventoryService.calculateTotalPrice(shoppingCart.getVehicles());
         
-        // Process payment through service
         this.isPaid = paymentService.processPayment(this.totalAmount);
         
-        // Mark vehicles as unavailable if payment successful
         if (this.isPaid) {
             inventoryService.markVehiclesAsUnavailable(shoppingCart.getVehicles());
         }
     }
 
-    // Getters - Invoice is now a pure data holder
     public Buyer getBuyer() {
         return buyer;
     }

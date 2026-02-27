@@ -10,9 +10,6 @@ import java.time.LocalDateTime;
 
 public class InvoiceFormatter {
     
-    /**
-     * Format and print an invoice
-     */
     public void printInvoice(Invoice invoice) {
         System.out.println("\n" + "=".repeat(60));
         System.out.println("                    INVOICE");

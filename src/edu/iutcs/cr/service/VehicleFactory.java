@@ -37,9 +37,6 @@ public class VehicleFactory {
         }
     }
     
-    /**
-     * Create a vehicle based on type code
-     */
     public Vehicle createVehicle(int typeCode, InputService inputService) {
         VehicleType type = VehicleType.fromCode(typeCode);
         if (type == null) {
@@ -48,10 +45,7 @@ public class VehicleFactory {
         
         return createVehicle(type, inputService);
     }
-    
-    /**
-     * Create a vehicle based on enum type
-     */
+
     public Vehicle createVehicle(VehicleType type, InputService inputService) {
         System.out.println("\n\nCreating new " + type.getDisplayName());
         
@@ -70,10 +64,7 @@ public class VehicleFactory {
                 throw new IllegalArgumentException("Unknown vehicle type: " + type);
         }
     }
-    
-    /**
-     * Display available vehicle types
-     */
+
     public void displayVehicleTypes() {
         System.out.println("Please select vehicle type:");
         for (VehicleType type : VehicleType.values()) {

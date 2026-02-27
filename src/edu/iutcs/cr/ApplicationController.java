@@ -170,9 +170,6 @@ public class ApplicationController {
         System.out.println("╚" + "═".repeat(50) + "╝\n");
     }
     
-    /**
-     * Create invoice with buyer and seller
-     */
     private void createInvoice(ShoppingCart cart) {
         Buyer buyer = findBuyer();
         if (buyer == null) return;
@@ -180,7 +177,6 @@ public class ApplicationController {
         Seller seller = findSeller();
         if (seller == null) return;
         
-        // Create invoice with services
         Invoice invoice = new Invoice(
             buyer, 
             seller, 
@@ -201,10 +197,7 @@ public class ApplicationController {
         System.out.println("\n✓ Order completed successfully!");
         promptToViewMainMenu();
     }
-    
-    /**
-     * Find and validate buyer
-     */
+
     private Buyer findBuyer() {
         Buyer buyer = null;
         while (buyer == null) {
@@ -217,10 +210,7 @@ public class ApplicationController {
         }
         return buyer;
     }
-    
-    /**
-     * Find and validate seller
-     */
+
     private Seller findSeller() {
         Seller seller = null;
         while (seller == null) {

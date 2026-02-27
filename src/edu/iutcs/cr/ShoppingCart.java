@@ -31,9 +31,6 @@ public class ShoppingCart implements Serializable {
         return vehicles;
     }
 
-    /**
-     * Add item to cart with validation
-     */
     public void addItem(InputService inputService) {
         System.out.print("Enter registration number of vehicle: ");
         String registrationNumber = inputService.readString("");
@@ -49,9 +46,6 @@ public class ShoppingCart implements Serializable {
         System.out.println("Vehicle added to cart successfully!");
     }
 
-    /**
-     * Remove item from cart
-     */
     public void removeItem(InputService inputService) {
         System.out.print("Enter the registration number of the vehicle: ");
         String registrationNumber = inputService.readString("");
@@ -64,9 +58,6 @@ public class ShoppingCart implements Serializable {
         }
     }
 
-    /**
-     * Display cart contents
-     */
     public void viewCart() {
         System.out.println("\n" + "=".repeat(60));
         System.out.println("                 SHOPPING CART");
@@ -88,10 +79,7 @@ public class ShoppingCart implements Serializable {
         System.out.println("TOTAL: $" + String.format("%.2f", total));
         System.out.println("=".repeat(60) + "\n");
     }
-    
-    /**
-     * Check if cart is empty
-     */
+
     public boolean isEmpty() {
         return vehicles.isEmpty();
     }

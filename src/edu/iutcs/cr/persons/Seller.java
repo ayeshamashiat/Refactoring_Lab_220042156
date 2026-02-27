@@ -10,25 +10,16 @@ public class Seller extends Person{
     private String businessLicense;
     private int salesCount;
 
-    /**
-     * Full constructor
-     */
     public Seller(String id, String name, String email, String businessLicense) {
         super(id, name, email);
         this.businessLicense = businessLicense;
         this.salesCount = 0;
     }
-    
-    /**
-     * Constructor for lookup
-     */
+
     public Seller(String id) {
         super(id);
     }
     
-    /**
-     * Static factory method for interactive creation
-     */
     public static Seller createFromUserInput(InputService inputService) {
         Person person = Person.createFromUserInput(inputService);
         String license = inputService.readString("Enter business license number: ");

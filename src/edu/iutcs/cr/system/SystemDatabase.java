@@ -98,16 +98,15 @@ public class SystemDatabase implements Serializable {
         }
     }
 
-    // ✅ FIXED: Use InvoiceFormatter instead of invoice.printInvoice()
     public void showInvoices() {
         if(invoices.isEmpty()) {
             System.out.println("No invoice found in system");
             return;
         }
 
-        InvoiceFormatter formatter = new InvoiceFormatter();  // ✅ Create formatter
+        InvoiceFormatter formatter = new InvoiceFormatter(); 
         for(Invoice invoice: invoices) {
-            formatter.printInvoice(invoice);  // ✅ Use formatter to print
+            formatter.printInvoice(invoice); 
             System.out.println("\n\n\n");
         }
     }
