@@ -4,7 +4,7 @@ import edu.iutcs.cr.Invoice;
 import edu.iutcs.cr.persons.Buyer;
 import edu.iutcs.cr.persons.Seller;
 import edu.iutcs.cr.vehicles.Vehicle;
-
+import edu.iutcs.cr.service.InvoiceFormatter; 
 import java.io.Serializable;
 import java.util.Set;
 
@@ -98,14 +98,16 @@ public class SystemDatabase implements Serializable {
         }
     }
 
+    // ✅ FIXED: Use InvoiceFormatter instead of invoice.printInvoice()
     public void showInvoices() {
         if(invoices.isEmpty()) {
             System.out.println("No invoice found in system");
             return;
         }
 
+        InvoiceFormatter formatter = new InvoiceFormatter();  // ✅ Create formatter
         for(Invoice invoice: invoices) {
-            invoice.printInvoice();
+            formatter.printInvoice(invoice);  // ✅ Use formatter to print
             System.out.println("\n\n\n");
         }
     }

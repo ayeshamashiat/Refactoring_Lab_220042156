@@ -1,37 +1,43 @@
 package edu.iutcs.cr.vehicles;
 
-import java.io.Serializable;
-import java.util.Scanner;
-
+import edu.iutcs.cr.service.InputService;
 /**
  * @author Raian Rahman
  * @since 4/19/2024
  */
-public class SUV extends Vehicle implements Serializable {
+public class SUV extends Vehicle{
 
     private boolean isOffRoad;
 
-    // Constructor
-    public SUV() {
-        super();
-        setOffRoad();
+    /**
+     * Full constructor
+     */
+    public SUV(String registrationNumber, String make, String model, 
+               String year, double price, boolean isOffRoad) {
+        super(registrationNumber, make, model, year, price);
+        this.isOffRoad = isOffRoad;
+    }
+    
+    /**
+     * Constructor for interactive creation
+     */
+    public SUV(InputService inputService) {
+        super("");
+        initializeFromUserInput(inputService);
+        this.isOffRoad = inputService.readBoolean("Is the SUV for off-road use?");
     }
 
-    // Getters and setters
     public boolean isOffRoad() {
         return isOffRoad;
     }
 
-    public void setOffRoad() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Is the SUV for off-road use? (true/false): ");
-        this.isOffRoad = scanner.nextBoolean();
+    public void setOffRoad(boolean offRoad) {
+        isOffRoad = offRoad;
     }
 
     @Override
     public String toString() {
-        return "SUV{" + super.toString() + ", " +
-                "isOffRoad=" + isOffRoad() +
-                "}";
+        return "SUV{" + super.toString() + 
+                ", isOffRoad=" + isOffRoad + '}';
     }
 }

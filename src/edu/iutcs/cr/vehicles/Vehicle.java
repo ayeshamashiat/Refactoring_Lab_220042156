@@ -2,7 +2,7 @@ package edu.iutcs.cr.vehicles;
 
 import java.io.Serializable;
 import java.util.Objects;
-import java.util.Scanner;
+import edu.iutcs.cr.service.InputService;
 
 /**
  * @author Raian Rahman
@@ -17,102 +17,71 @@ public class Vehicle implements Serializable {
     private boolean available;
     private String registrationNumber;
 
-    public Vehicle() {
-        setRegistrationNumber();
-        setMake();
-        setModel();
-        setYear();
-        setPrice();
+    public Vehicle(String registrationNumber, String make, String model, 
+                   String year, double price) {
+        this.registrationNumber = registrationNumber;
+        this.make = make;
+        this.model = model;
+        this.year = year;
+        this.price = price;
         this.available = true;
     }
-
+   
     public Vehicle(String registrationNumber) {
         this.registrationNumber = registrationNumber;
     }
 
-    public String getRegistrationNumber() {
-        return this.registrationNumber;
+    protected void initializeFromUserInput(InputService inputService) {
+        this.registrationNumber = inputService.readMandatoryString(
+            "Enter registration number: ", "Registration number");
+        this.make = inputService.readMandatoryString(
+            "Enter make: ", "Make");
+        this.model = inputService.readMandatoryString(
+            "Enter model: ", "Model");
+        this.year = inputService.readMandatoryString(
+            "Enter year: ", "Year");
+        this.price = inputService.readDouble("Enter price: $");
+        this.available = true;
     }
 
-    public void setRegistrationNumber() {
-        Scanner scanner = new Scanner(System.in);
-        while (this.registrationNumber == null || registrationNumber.isBlank()) {
-            System.out.print("Enter registration number: ");
-            this.registrationNumber = scanner.nextLine();
-
-            if (registrationNumber == null || registrationNumber.isBlank()) {
-                System.out.println("Registration number is mandatory!");
-            }
-        }
+    public String getRegistrationNumber() {
+        return registrationNumber;
     }
 
     public String getMake() {
         return make;
     }
 
-    public void setMake() {
-        Scanner scanner = new Scanner(System.in);
-
-        while (this.make == null || this.make.isBlank()) {
-            System.out.print("Enter make: ");
-            this.make = scanner.nextLine();
-
-            if (make == null || make.isBlank()) {
-                System.out.println("Make is mandatory!");
-            }
-        }
-    }
-
     public String getModel() {
         return model;
-    }
-
-    public void setModel() {
-        Scanner scanner = new Scanner(System.in);
-
-        while (this.model == null || this.model.isBlank()) {
-            System.out.print("Enter model: ");
-            this.model = scanner.nextLine();
-
-            if (model == null || model.isBlank()) {
-                System.out.println("Model is mandatory!");
-            }
-        }
     }
 
     public String getYear() {
         return year;
     }
 
-    public void setYear() {
-        Scanner scanner = new Scanner(System.in);
-
-        while (this.year == null || this.year.isBlank()) {
-            System.out.print("Enter year: ");
-            this.year = scanner.nextLine();
-
-            if (year == null || year.isBlank()) {
-                System.out.println("Year is mandatory!");
-            }
-        }
-    }
-
     public double getPrice() {
         return price;
-    }
-
-    public void setPrice() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter price: ");
-        this.price = scanner.nextDouble();
     }
 
     public boolean isAvailable() {
         return available;
     }
 
+    // Business logic methods
     public void setUnavailable() {
         this.available = false;
+    }
+    
+    public void setAvailable() {
+        this.available = true;
+    }
+    
+    public void setPrice(double price) {
+        if (price < 0) {
+            throw new IllegalArgumentException("Price cannot be negative");
+        }
+        this.price = price;
     }
 
     @Override
@@ -120,7 +89,7 @@ public class Vehicle implements Serializable {
         return "make='" + make + '\'' +
                 ", model='" + model + '\'' +
                 ", year='" + year + '\'' +
-                ", price=" + price +
+                ", price=$" + String.format("%.2f", price) +
                 ", available=" + available +
                 ", registrationNumber='" + registrationNumber + '\'';
     }
@@ -128,8 +97,9 @@ public class Vehicle implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Vehicle vehicle)) return false;
-        return Objects.equals(this.registrationNumber, vehicle.registrationNumber);
+        if (!(o instanceof Vehicle)) return false;
+        Vehicle vehicle = (Vehicle) o;
+        return Objects.equals(registrationNumber, vehicle.registrationNumber);
     }
 
     @Override
